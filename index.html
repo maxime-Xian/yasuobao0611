@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片压缩工具</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">图片压缩工具</h1>
+            <p class="subtitle">轻松压缩您的图片，保持最佳质量</p>
+        </header>
+
+        <main class="main-content">
+            <!-- 上传区域 -->
+            <div class="upload-section">
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7,10 12,15 17,10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </div>
+                    <h3>拖拽图片到此处或点击上传</h3>
+                    <p>支持 PNG、JPG、JPEG 格式</p>
+                    <input type="file" id="fileInput" accept="image/png,image/jpg,image/jpeg" multiple hidden>
+                    <button class="upload-btn" id="uploadBtn">选择图片</button>
+                    <div class="quick-info-section" id="quickInfoSection" style="display: none;">
+                        <div class="quick-original-info">
+                            <h4>原图信息</h4>
+                            <p>大小: <span id="quickOriginalSize">-</span></p>
+                        </div>
+                        <div class="quick-compressed-info" id="quickCompressedInfoContainer" style="display: none;">
+                            <h4>压缩后信息</h4>
+                            <p>大小: <span id="quickCompressedSize">-</span></p>
+                            <button class="download-btn-quick" id="downloadBtnQuick" disabled>下载压缩图片</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 压缩控制区域 -->
+            <div class="controls-section" id="controlsSection" style="display: none;">
+                <div class="control-group">
+                    <label for="qualitySlider">压缩质量</label>
+                    <div class="slider-container">
+                        <input type="range" id="qualitySlider" min="10" max="100" value="80" class="slider">
+                        <span class="slider-value" id="qualityValue">80%</span>
+                    </div>
+                </div>
+                <button class="compress-btn" id="compressBtn">开始压缩</button>
+            </div>
+
+            <!-- 预览区域 -->
+            <div class="preview-section" id="previewSection" style="display: none;">
+                <div class="preview-container">
+                    <div class="preview-item">
+                        <h4>原图</h4>
+                        <div class="image-container">
+                            <img id="originalImage" alt="原图">
+                            <div class="image-info">
+                                <span class="file-size" id="originalSize">-</span>
+                                <span class="dimensions" id="originalDimensions">-</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="9,18 15,12 9,6"></polyline>
+                        </svg>
+                    </div>
+                    
+                    <div class="preview-item">
+                        <h4>压缩后</h4>
+                        <div class="image-container">
+                            <img id="compressedImage" alt="压缩后">
+                            <div class="image-info">
+                                <span class="file-size" id="compressedSize">-</span>
+                                <span class="dimensions" id="compressedDimensions">-</span>
+                                <span class="compression-ratio" id="compressionRatio">-</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="download-section">
+                    <button class="download-btn" id="downloadBtn" disabled>下载压缩图片</button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- 加载动画 -->
+    <div class="loading-overlay" id="loadingOverlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p>正在压缩图片...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
